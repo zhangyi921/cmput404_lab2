@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 import socket
 
-HOST = "www.google.com"
-PORT = 80
+HOST = "localhost"
+PORT = 8001
 BUFFER_SIZE = 1024
 
 payload = """GET / HTTP/1.0
-Host: {HOST}
+Host: www.google.com
 
-""".format(HOST=HOST)
+"""
 
 
 def connect_socket(addr):
@@ -17,6 +17,9 @@ def connect_socket(addr):
         s = socket.socket(family,socketype, proto)
         s.connect(sockaddr)
         s.sendall(payload.encode())
+     
+        s.shutdown(socket.SHUT_WR)
+
         full_data = b""
         while True:
             data = s.recv(BUFFER_SIZE)
