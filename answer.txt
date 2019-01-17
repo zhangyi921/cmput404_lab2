@@ -1,0 +1,4 @@
+Q1:
+addr_info = socket.getaddrinfo(HOST, PORT, proto=socket.SOL_TCP)
+
+Q2:
